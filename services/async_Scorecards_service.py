@@ -1,5 +1,5 @@
 import json
-from typing import *
+from typing import Any, Dict, List, Optional
 
 import httpx
 
@@ -7,9 +7,23 @@ from ..api_config import APIConfig, HTTPException
 from ..models import *
 
 
-async def get_v1blueprintsblueprint_identifierscorecards(
+async def get_blueprint_scorecards(
     blueprint_identifier: str, api_config_override: Optional[APIConfig] = None
-) -> None:
+) -> List[Dict[str, Any]]:
+    """
+    Retrieve all scorecards for the specified blueprint.
+
+    Args:
+        blueprint_identifier (str): The identifier of the blueprint.
+        api_config_override (Optional[APIConfig], optional): API configuration override. Defaults to None.
+
+    Raises:
+        HTTPException: If the API request fails.
+
+    Returns:
+        List[Dict[str, Any]]: A list of scorecards.
+    """
+
     api_config = api_config_override if api_config_override else APIConfig()
 
     base_path = api_config.base_path
@@ -17,7 +31,7 @@ async def get_v1blueprintsblueprint_identifierscorecards(
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization": f"Bearer { api_config.get_access_token() }",
+        "Authorization": f"Bearer {api_config.get_access_token()}"
     }
     query_params: Dict[str, Any] = {}
 
@@ -34,12 +48,12 @@ async def get_v1blueprintsblueprint_identifierscorecards(
     if response.status_code != 200:
         raise HTTPException(response.status_code, f" failed with status code: {response.status_code}")
 
-    return None
+    return response.json()
 
 
-async def post_v1blueprintsblueprint_identifierscorecards(
+async def create_blueprint_scorecard(
     blueprint_identifier: str, data: Dict[str, Any], api_config_override: Optional[APIConfig] = None
-) -> None:
+) -> Dict[str, Any]:
     api_config = api_config_override if api_config_override else APIConfig()
 
     base_path = api_config.base_path
@@ -47,7 +61,7 @@ async def post_v1blueprintsblueprint_identifierscorecards(
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization": f"Bearer { api_config.get_access_token() }",
+        "Authorization": f"Bearer {api_config.get_access_token()}"
     }
     query_params: Dict[str, Any] = {}
 
@@ -59,12 +73,12 @@ async def post_v1blueprintsblueprint_identifierscorecards(
     if response.status_code != 200:
         raise HTTPException(response.status_code, f" failed with status code: {response.status_code}")
 
-    return None
+    return response.json()
 
 
-async def put_v1blueprintsblueprint_identifierscorecards(
+async def update_blueprint_scorecards(
     blueprint_identifier: str, data: List[Dict[str, Any]], api_config_override: Optional[APIConfig] = None
-) -> None:
+) -> Dict[str, Any]:
     api_config = api_config_override if api_config_override else APIConfig()
 
     base_path = api_config.base_path
@@ -72,7 +86,7 @@ async def put_v1blueprintsblueprint_identifierscorecards(
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization": f"Bearer { api_config.get_access_token() }",
+        "Authorization": f"Bearer {api_config.get_access_token()}"
     }
     query_params: Dict[str, Any] = {}
 
@@ -86,12 +100,12 @@ async def put_v1blueprintsblueprint_identifierscorecards(
     if response.status_code != 200:
         raise HTTPException(response.status_code, f" failed with status code: {response.status_code}")
 
-    return None
+    return response.json()
 
 
-async def get_v1blueprintsblueprint_identifierscorecardsscorecard_identifier(
+async def get_blueprint_scorecard(
     scorecard_identifier: str, blueprint_identifier: str, api_config_override: Optional[APIConfig] = None
-) -> None:
+) -> Dict[str, Any]:
     api_config = api_config_override if api_config_override else APIConfig()
 
     base_path = api_config.base_path
@@ -99,7 +113,7 @@ async def get_v1blueprintsblueprint_identifierscorecardsscorecard_identifier(
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization": f"Bearer { api_config.get_access_token() }",
+        "Authorization": f"Bearer {api_config.get_access_token()}"
     }
     query_params: Dict[str, Any] = {}
 
@@ -116,15 +130,15 @@ async def get_v1blueprintsblueprint_identifierscorecardsscorecard_identifier(
     if response.status_code != 200:
         raise HTTPException(response.status_code, f" failed with status code: {response.status_code}")
 
-    return None
+    return response.json()
 
 
-async def put_v1blueprintsblueprint_identifierscorecardsscorecard_identifier(
+async def update_blueprint_scorecard(
     scorecard_identifier: str,
     blueprint_identifier: str,
     data: Dict[str, Any],
     api_config_override: Optional[APIConfig] = None,
-) -> None:
+) -> Dict[str, Any]:
     api_config = api_config_override if api_config_override else APIConfig()
 
     base_path = api_config.base_path
@@ -132,7 +146,7 @@ async def put_v1blueprintsblueprint_identifierscorecardsscorecard_identifier(
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization": f"Bearer { api_config.get_access_token() }",
+        "Authorization": f"Bearer {api_config.get_access_token()}"
     }
     query_params: Dict[str, Any] = {}
 
@@ -144,12 +158,12 @@ async def put_v1blueprintsblueprint_identifierscorecardsscorecard_identifier(
     if response.status_code != 200:
         raise HTTPException(response.status_code, f" failed with status code: {response.status_code}")
 
-    return None
+    return response.json()
 
 
-async def delete_v1blueprintsblueprint_identifierscorecardsscorecard_identifier(
+async def delete_blueprint_scorecard(
     scorecard_identifier: str, blueprint_identifier: str, api_config_override: Optional[APIConfig] = None
-) -> None:
+) -> Dict[str, Any]:
     api_config = api_config_override if api_config_override else APIConfig()
 
     base_path = api_config.base_path
@@ -157,7 +171,7 @@ async def delete_v1blueprintsblueprint_identifierscorecardsscorecard_identifier(
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization": f"Bearer { api_config.get_access_token() }",
+        "Authorization": f"Bearer {api_config.get_access_token()}"
     }
     query_params: Dict[str, Any] = {}
 
@@ -174,10 +188,10 @@ async def delete_v1blueprintsblueprint_identifierscorecardsscorecard_identifier(
     if response.status_code != 200:
         raise HTTPException(response.status_code, f" failed with status code: {response.status_code}")
 
-    return None
+    return response.json()
 
 
-async def get_v1scorecards(api_config_override: Optional[APIConfig] = None) -> None:
+async def get_scorecards(api_config_override: Optional[APIConfig] = None) -> List[Dict[str, Any]]:
     api_config = api_config_override if api_config_override else APIConfig()
 
     base_path = api_config.base_path
@@ -185,7 +199,7 @@ async def get_v1scorecards(api_config_override: Optional[APIConfig] = None) -> N
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization": f"Bearer { api_config.get_access_token() }",
+        "Authorization": f"Bearer {api_config.get_access_token()}"
     }
     query_params: Dict[str, Any] = {}
 
@@ -202,4 +216,4 @@ async def get_v1scorecards(api_config_override: Optional[APIConfig] = None) -> N
     if response.status_code != 200:
         raise HTTPException(response.status_code, f" failed with status code: {response.status_code}")
 
-    return None
+    return response.json()
